@@ -7,97 +7,60 @@ class Results extends Component{
 
     super(props)
 
-    this.state={
-      img: '',
-      name : '',
-      description: '',
-      exactMass: '',
-      formula: '',
-      inchiKey: '',
-      mainClass: '',
-      subClass: '',
-      sysName: '',
-      pubchem_cid: '',
-      regno: '',
-
-    }
   }
 
-  componentDidUpdate(prevProps) {
-    console.log('new');
-    this.setState({
-        img: this.props.data.img,
-        name : this.props.data.name,
-        description: this.props.data.description,
-        exactMass: this.props.exactMass,
-        formula: this.props.formula,
-        inchiKey: this.props.inchiKey,
-        mainClass: this.props.mainClass,
-        subClass: this.props.subClass,
-        sysName: this.props.sysName,
-        pubchem_cid: this.props.pubchem_cid,
-        regno: this.props.regno,
-    });
-
-    {
-    /*
-    if(prevProps.value !== this.props.value) {
-      this.setState({value: this.props.value});
-    }
-    */
-    }
-
-  }
 
   render(){
+
+    console.log(this.props);
+
     return(
       <div className="results-container">
-  
 
-      <img src="{ this.state.img }" />
+      <img src={ this.props.img } />
       <Table striped bordered hover>
           <thead>
           </thead>
           <tbody>
             <tr>
               <td>Name</td>
-              <td>{ this.state.name }</td>
+              <td>{ this.props.name }</td>
             </tr>
             <tr>
               <td>Description</td>
-              <td>{ this.state.description }</td>
+              <td>{ this.props.description }</td>
             </tr>
             <tr>
               <td>Exact Mass</td>
-              <td>{ this.state.exactMass }</td>
+              <td>{ this.props.exactMass }</td>
             </tr>
             <tr>
               <td>Formula</td>
-              <td>{ this.state.formula }</td>
+              <td>{ this.props.formula }</td>
             </tr>
             <tr>
               <td>Inchi Key</td>
-              <td>{ this.state.inchiKey }</td>
+              <td>{ this.props.inchiKey }</td>
             </tr>  
             <tr>
               <td>Main Class</td>
-              <td>{ this.state.mainClass }</td>
+              <td>{ this.props.mainClass }</td>
             </tr>
             <tr>
               <td>Sub Class</td>
-              <td>{ this.state.subClass }</td>
+              <td>{ this.props.subClass }</td>
             </tr>
             <tr>
               <td>Sys Name</td>
-              <td>{ this.state.sysName }</td>
+              <td>{ this.props.sysName }</td>
             </tr>
             <tr>
               <td>PubChem CID</td>
-              <td>{ this.state.pubchem_cid }</td>
+              <td>{ this.props.pubchem_cid }</td>
             </tr>
             <tr>
               <td>Reg No</td>
-              <td>{ this.state.regno }</td>
+              <td>{ this.props.regno }</td>
             </tr>                
           </tbody>
         </Table>     

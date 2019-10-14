@@ -28,6 +28,9 @@ class SearchForm extends Component{
   }
 
   searchMetabolites(){
+
+    this.props.loadingCallback();
+
     // Search API and pass that shit back to the parent
     let data = {}
     let uri = `http://localhost:5000/api/metabolites?name=${this.state.metabolite}`

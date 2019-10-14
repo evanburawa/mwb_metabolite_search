@@ -66,6 +66,7 @@ def metabolite_search():
     else:
         return Response(status = 204)      
 
+
 @app.route('/api/metabolites/image')
 def metabolite_img_search():
     name = request.args.get('name')
@@ -73,10 +74,30 @@ def metabolite_img_search():
         uri = '''https://www.metabolomicsworkbench.org/rest/refmet/name/{}/all/'''.format(name)
         response = requests.get(uri)
         if response.status_code == 200 and response.text != '[]':
-            return json.loads(response.text)
+            # Data
+            #obj = json.loads(response.text)
+            obj = response.json()
+
+            #  Find Image
+            img_uri = '''https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{}/PNG'''.format(name)
+            img_response = requests.get(img_uri)
+            if img_response.status_code == 200:
+                img_data = img_response.text
+                #return base64.b64encode(bytes(img_data, 'utf-8'))
+
+                #obj['img'] = base64.b64encode(bytes(img_data, 'utf-8'))
+                #obj['img'] = base64.b64encode(bytes(img_data, 'utf-8'))
+                #obj['img'] = base64.b64encode(img_data.read())
+                obj['img1'] = base64.b64encode(img_data.encode('utf-8'))
+                obj['img'] = img_response.text
+
+            else:
+                obj['img'] = ''
+            return obj
         return Response(status=204)
     else:
-        return Response(status = 204)  
+        return Response(status = 204)      
+
 
 #  SAve Results to PostGres
 @app.route('/results/save')
