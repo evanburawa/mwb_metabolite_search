@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - .:/code    
+    ports:
+      - "5000:5000"
+  redis:
+    image: "redis:alpine"
+  db:
+    image: "postgres:11"
+    container_name: "my_postgres"
+    ports:
+      - "54320:5432"
+    volumes:
+      - my_dbdata:/var/lib/postgresql/data
+volumes:
+  my_dbdata:          
